@@ -12,7 +12,7 @@
   },
   "author": "Keyvin Duque",
   "license": "MIT",
-  "description": "",
+  "description": "Xbox Cloud Gaming Wrapper",
   "devDependencies": {
     "@electron-forge/cli": "^7.4.0",
     "@electron-forge/maker-deb": "^7.4.0",
