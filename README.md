@@ -1,0 +1,5 @@
+# Xbox Cloud Gaming
+
+## Description
+
+This is just a Electron Wrapper for the Xbox Cloud Gaming website. It has Better Xcloud script injected to it.
