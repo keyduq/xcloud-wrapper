@@ -3,7 +3,11 @@ const { FuseV1Options, FuseVersion } = require("@electron/fuses");
 
 module.exports = {
   packagerConfig: {
+    name: "Xcloud Wrapper",
+    executableName: "xcloud-wrapper",
     asar: true,
+    icon: "./assets/icons/icon",
+    appCategoryType: "public.app-category.games",
   },
   rebuildConfig: {},
   makers: [
@@ -17,11 +21,19 @@ module.exports = {
     },
     {
       name: "@electron-forge/maker-deb",
-      config: {},
+      config: {
+        options: {
+          icon: "./assets/icons/png/512x512.png",
+        },
+      },
     },
     {
       name: "@electron-forge/maker-rpm",
-      config: {},
+      config: {
+        options: {
+          icon: "./assets/icons/png/512x512.png",
+        },
+      },
     },
   ],
   plugins: [

@@ -19,8 +19,10 @@ if (require("electron-squirrel-startup") === true) app.quit();
 
 const createWindow = () => {
   const win = new BrowserWindow({
+    title: "Xcloud Wrapper",
     width: 1280,
     height: 720,
+    icon: "./assets/icons/png/512x512.png",
   });
   win.loadURL("https://xbox.com/play");
   if (platform() === "darwin") {
@@ -38,10 +40,12 @@ const createWindow = () => {
       win.setKiosk(false);
     });
   }
+  win.webContents.on("page-title-updated", (_) => {
+    win.setTitle("Xcloud Wrapper");
+  });
   win.webContents.on("dom-ready", async () => {
     try {
       const script = await prepareScript();
-      console.log(script);
       win.webContents.executeJavaScript(script);
     } catch (error) {
       console.error(error);
