@@ -3,13 +3,19 @@ const { default: axios } = require("axios");
 const fs = require("fs/promises");
 const { platform } = require("os");
 
-const betterXcloudScript = 'https://github.com/redphx/better-xcloud/releases/latest/download/better-xcloud.user.js';
+const betterXcloudScript =
+  "https://github.com/redphx/better-xcloud/releases/latest/download/better-xcloud.user.js";
 
 const prepareScript = async () => {
-  const additionalScript = await fs.readFile('assets/js/additional.user.js', 'utf-8');
+  const additionalScript = await fs.readFile(
+    "assets/js/additional.user.js",
+    "utf-8",
+  );
   const { data } = await axios.get(betterXcloudScript);
-  return data.replace('/* ADDITIONAL CODE */', additionalScript);
-}
+  return data.replace("/* ADDITIONAL CODE */", additionalScript);
+};
+
+if (require("electron-squirrel-startup") === true) app.quit();
 
 const createWindow = () => {
   const win = new BrowserWindow({
@@ -19,18 +25,18 @@ const createWindow = () => {
   win.loadURL("https://xbox.com/play");
   if (platform() === "darwin") {
     // kiosk mode for macOS so the dock and menu bar are always hidden
-    win.webContents.on('enter-html-full-screen', () => {
+    win.webContents.on("enter-html-full-screen", () => {
       win.setKiosk(true);
-    })
-    win.on('leave-html-full-screen', () => {
+    });
+    win.on("leave-html-full-screen", () => {
       win.setKiosk(false);
-    })
-    win.on('enter-full-screen', () => {
+    });
+    win.on("enter-full-screen", () => {
       win.setKiosk(true);
-    })
-    win.on('leave-full-screen', () => {
+    });
+    win.on("leave-full-screen", () => {
       win.setKiosk(false);
-    })
+    });
   }
   win.webContents.on("dom-ready", async () => {
     try {
